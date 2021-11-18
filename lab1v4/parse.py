@@ -88,6 +88,8 @@ def parse(filename):
         start_point_str = arr[-1]
         if start_point_str in ['x0 = None', 'x0 =']:
             start_point = None
+        elif start_point_str in ['problem']:
+            return matrix, answers, target, conditions, 'problem'
         else:
             start_point = np.array(find_x(start_point_str.split('=')[1].replace(' ', '')))
         return matrix, answers, target, conditions, start_point
