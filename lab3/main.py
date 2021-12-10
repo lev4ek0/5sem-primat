@@ -16,8 +16,7 @@ def generator(num):
 
 a = np.zeros(8)
 a[0] = 1
-seed(10)
-b = np.array([generator(8) for j in range(8)]).reshape(8, 8)
+b = np.array([0, 0.1, 0.3, 0, 0.6, 0, 0, 0, 0.5, 0, 0, 0.25, 0, 0.25, 0, 0, 0.3, 0, 0, 0, 0, 0, 0.7, 0, 0, 0, 0, 0.3, 0, 0.4, 0, 0.3, 0.1, 0, 0.1, 0, 0.4, 0.4, 0, 0, 0.2, 0.5, 0, 0, 0.3, 0, 0, 0, 0.1, 0, 0, 0, 0.8, 0, 0, 0.1, 0.1, 0, 0, 0.8, 0, 0, 0.4, 0]).reshape(8,8)
 
 
 def compare(a, b, sko):
@@ -63,7 +62,7 @@ sko1 = deepcopy(sko)
 plt.xlabel('шаг', fontsize=14)
 plt.xticks(step)
 plt.ylabel('ско', fontsize=14)
-seed(999)
+seed(10)
 b = np.array([generator(8) for j in range(8)]).reshape(8, 8)
 step.clear()
 sko.clear()
