@@ -1,16 +1,15 @@
 import sys
 
 from matplotlib import pyplot as plt
-from math import sqrt, inf
 from copy import deepcopy
-from random import random, seed
+from random import seed, randrange
 import numpy as np
 import warnings
 warnings.filterwarnings("ignore")
 
 
 def generator(num):
-    a = np.array([random() for i in range(num)])
+    a = np.array([float(randrange(1, 999)) for i in range(num)])
     a /= a.sum()
     return a
 
@@ -64,7 +63,7 @@ sko1 = deepcopy(sko)
 plt.xlabel('шаг', fontsize=14)
 plt.xticks(step)
 plt.ylabel('ско', fontsize=14)
-seed(1111)
+seed(999)
 b = np.array([generator(8) for j in range(8)]).reshape(8, 8)
 step.clear()
 sko.clear()
