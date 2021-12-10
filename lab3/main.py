@@ -2,7 +2,6 @@ from matplotlib import pyplot as plt
 from math import sqrt, inf
 from copy import deepcopy
 from random import random
-
 import numpy as np
 
 
@@ -47,16 +46,20 @@ def anal(b):
     return np.linalg.solve(b, answers)
 
 
+plt.style.use('ggplot')
 sko = []
 print(number(a, b, 0.0001, 10, sko))
 print(anal(b), '\n')
 step = []
 for i in range(len(sko)):
     step.append(i)
-plt.figure(figsize=(5, 4))
+grid = plt.GridSpec(2, 3, wspace=0.5, hspace=0.5)
+plt.subplot(grid[0, 2])
 plt.plot(step, sko, 'magenta')
-plt.title('СКО', fontsize=15)
+step1 = deepcopy(step)
+sko1 = deepcopy(sko)
 plt.xlabel('шаг', fontsize=14)
+plt.xticks(step)
 plt.ylabel('ско', fontsize=14)
 b = np.array([generator(8) for j in range(8)]).reshape(8, 8)
 step.clear()
@@ -65,5 +68,16 @@ print(number(a, b, 0.0001, 10, sko))
 print(anal(b))
 for i in range(len(sko)):
     step.append(i)
+plt.subplot(grid[1, 2])
 plt.plot(step, sko, 'lime')
+plt.xlabel('шаг', fontsize=14)
+plt.xticks(step)
+plt.ylabel('ско', fontsize=14)
+plt.subplot(grid[0:2, 0:2])
+plt.plot(step1, sko1, 'magenta')
+plt.xlabel('шаг', fontsize=14)
+plt.ylabel('ско', fontsize=14)
+plt.plot(step, sko, 'lime')
+plt.xlabel('шаг', fontsize=14)
+plt.ylabel('ско', fontsize=14)
 plt.show()
