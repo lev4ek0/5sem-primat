@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
 from math import sqrt, inf
 from copy import deepcopy
-from random import random
+from random import random, seed
 import numpy as np
 
 
@@ -13,6 +13,7 @@ def generator(num):
 
 a = np.zeros(8)
 a[0] = 1
+seed(10)
 b = np.array([generator(8) for j in range(8)]).reshape(8, 8)
 
 
@@ -61,6 +62,7 @@ sko1 = deepcopy(sko)
 plt.xlabel('шаг', fontsize=14)
 plt.xticks(step)
 plt.ylabel('ско', fontsize=14)
+seed(1111)
 b = np.array([generator(8) for j in range(8)]).reshape(8, 8)
 step.clear()
 sko.clear()
@@ -73,7 +75,7 @@ plt.plot(step, sko, 'lime')
 plt.xlabel('шаг', fontsize=14)
 plt.xticks(step)
 plt.ylabel('ско', fontsize=14)
-plt.subplot(grid[0:2, 0:2])
+plt.subplot(grid[:2, :2])
 plt.plot(step1, sko1, 'magenta')
 plt.xlabel('шаг', fontsize=14)
 plt.ylabel('ско', fontsize=14)
