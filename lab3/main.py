@@ -1,8 +1,12 @@
+import sys
+
 from matplotlib import pyplot as plt
 from math import sqrt, inf
 from copy import deepcopy
 from random import random, seed
 import numpy as np
+import warnings
+warnings.filterwarnings("ignore")
 
 
 def generator(num):
@@ -18,17 +22,15 @@ b = np.array([generator(8) for j in range(8)]).reshape(8, 8)
 
 
 def compare(a, b, sko):
-    diff = 0
-    for i in zip(a, b):
-        diff += (i[0] - i[1]) ** 2
-    diff = sqrt(diff / len(a))
+    c = a - b
+    diff = np.std(c)
     sko.append(diff)
     return diff
 
 
 def number(a, b, e, step, sko):
     prev = deepcopy(a)
-    prev[0] = -inf
+    prev[0] = -sys.float_info.max
     i = 0
     while compare(a, prev, sko) > e and i < step:
         i += 1
