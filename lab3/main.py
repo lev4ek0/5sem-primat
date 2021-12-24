@@ -1,24 +1,26 @@
 import sys
 
 from matplotlib import pyplot as plt
-from math import sqrt, inf
 from copy import deepcopy
-from random import random, seed
+from random import seed, randrange
 import numpy as np
 import warnings
+
 warnings.filterwarnings("ignore")
 
 
 def generator(num):
-    a = np.array([random() for i in range(num)])
+    a = np.array([float(randrange(1, 999)) for i in range(num)])
     a /= a.sum()
     return a
 
 
 a = np.zeros(8)
 a[0] = 1
-seed(10)
-b = np.array([generator(8) for j in range(8)]).reshape(8, 8)
+b = np.array(
+    [0.4, 0.1, 0.05, 0.25, 0, 0.1, 0.1, 0, 0.2, 0.1, 0.2, 0, 0.4, 0.02, 0.08, 0, 0, 0.1, 0.3, 0.3, 0, 0.2, 0.1, 0, 0.2,
+     0, 0, 0.4, 0.3, 0, 0.1, 0, 0, 0, 0.3, 0, 0.1, 0.4, 0, 0.2, 0.3, 0.2, 0, 0, 0.4, 0.1, 0, 0, 0, 0, 0, 0.7, 0, 0, 0.2,
+     0.1, 0.1, 0, 0.22, 0.2, 0, 0.38, 0, 0.1]).reshape(8, 8)
 
 
 def compare(a, b, sko):
@@ -39,7 +41,7 @@ def number(a, b, e, step, sko):
     return a
 
 
-def anal(b):
+def analytics(b):
     e = np.eye(8)
     b = b.T
     b = b - e
@@ -51,8 +53,9 @@ def anal(b):
 
 plt.style.use('ggplot')
 sko = []
-print(number(a, b, 0.0001, 10, sko))
-print(anal(b), '\n')
+print('magenta:')
+print('number:    ', number(a, b, 0.0001, 10, sko))
+print('analytics: ', analytics(b), '\n')
 step = []
 for i in range(len(sko)):
     step.append(i)
@@ -64,12 +67,13 @@ sko1 = deepcopy(sko)
 plt.xlabel('шаг', fontsize=14)
 plt.xticks(step)
 plt.ylabel('ско', fontsize=14)
-seed(1111)
+seed(10)
 b = np.array([generator(8) for j in range(8)]).reshape(8, 8)
 step.clear()
 sko.clear()
-print(number(a, b, 0.0001, 10, sko))
-print(anal(b))
+print('lime:')
+print('number:    ', number(a, b, 0.0001, 10, sko))
+print('analytics: ', analytics(b), '\n')
 for i in range(len(sko)):
     step.append(i)
 plt.subplot(grid[1, 2])
